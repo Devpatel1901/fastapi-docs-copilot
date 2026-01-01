@@ -21,17 +21,28 @@ def list_markdown_files(root_dir):
                 md_files.append(os.path.join(root, f))
     return md_files
 
+def extract_anchor_links(text):
+    match = re.search(r'\{\s*#([A-Za-z0-9\-_]+)\s*\}', text)
+    anchor = ""
+    if match:
+        anchor = match.group(1)
+        
+    return anchor
+
 def create_chunks(docs):
     text_content = ""
+    anchor_link_text = ""
     chunks = []
 
     for doc in docs:
         if doc.metadata["category"] == "Title":
             if not text_content:
-                text_content += doc.page_content + "\n"
+                text_content += doc.page_content.strip() + "\n"
+                anchor_link_text = extract_anchor_links(doc.page_content.strip())
             else:
-                chunks.append(Document(page_content=text_content.strip(), metadata={"source": doc.metadata.get("source", "")}))
+                chunks.append(Document(page_content=text_content.strip(), metadata={"source": doc.metadata.get("source", "")[:-3] + (f"#{anchor_link_text}" if anchor_link_text else "")}))
                 text_content = doc.page_content.strip() + "\n"
+                anchor_link_text = extract_anchor_links(doc.page_content.strip())
         else:
             if doc.metadata.get("emphasized_text_tags", []) == ['i']:
                 match = re.search(r"\{\s*(?:\.\./)*([^\s]+\.py)", doc.page_content)
