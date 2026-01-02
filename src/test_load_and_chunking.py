@@ -1,9 +1,7 @@
-import os
 from dotenv import load_dotenv
 from langchain_community.document_loaders import UnstructuredMarkdownLoader
 from langchain_core.documents import Document
 from langchain_huggingface.embeddings import HuggingFaceEmbeddings
-from langchain_community.vectorstores import FAISS
 import re
 
 load_dotenv()
