@@ -1,5 +1,5 @@
 from langchain.agents.middleware import dynamic_prompt, ModelRequest
-from vector_store import retrieve_similar_documents
+from src.vector_store import retrieve_similar_documents
 
 @dynamic_prompt
 def prompt_with_context(request: ModelRequest) -> str:

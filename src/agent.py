@@ -3,7 +3,7 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.agents import create_agent
 from langchain.agents.middleware import SummarizationMiddleware, ModelRetryMiddleware
 from langgraph.checkpoint.memory import InMemorySaver
-from middleware import prompt_with_context
+from src.middleware import prompt_with_context
 
 load_dotenv()
 

@@ -1,6 +1,6 @@
 from langchain.messages import HumanMessage
 from langchain_core.messages.ai import AIMessageChunk
-from agent import agent
+from src.agent import agent
 
 def initiate_qa_bot():
     input_query = ""
