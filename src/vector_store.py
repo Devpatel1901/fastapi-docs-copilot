@@ -1,10 +1,12 @@
 import os
 from langchain_huggingface.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
+from pathlib import Path
 
+BASE_DIR = Path(__file__).resolve().parents[1]
 
 def get_vector_store():
-    faiss_path = './faiss_index'
+    faiss_path = BASE_DIR / 'faiss_index'
     embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
     db = None
 

@@ -10,4 +10,8 @@ docs_data/
 # Virtual environments
 .venv
 
+# environment files
 .env
+
+# langgraph files
+.langgraph_api

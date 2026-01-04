@@ -15,6 +15,7 @@ def prompt_with_context(request: ModelRequest) -> str:
     system_message = (
         "You are an AI assistant for answering questions about FastAPI documentation. "
         "Use the following context from the documentation to answer the user's question. "
+        "After reading the context, generate a concise and clear answer."
         "If the context does not contain the answer, respond with 'I don't know, try to search with different keywords.'"
         "As well as cite the source of the information from the context."
         "You can generate web page url by appending the source path to 'https://fastapi.tiangolo.com/' "
