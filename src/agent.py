@@ -4,6 +4,7 @@ from langchain.agents import create_agent
 from langchain.agents.middleware import SummarizationMiddleware, ModelRetryMiddleware
 from langgraph.checkpoint.memory import InMemorySaver
 from src.middleware import prompt_with_context
+from src.tools import validate_fastapi_doc_url
 
 load_dotenv()
 
@@ -14,7 +15,7 @@ def format_error(error: Exception) -> str:
 
 agent = create_agent(
     model=llm,
-    tools=[],
+    tools=[validate_fastapi_doc_url],
     checkpointer=InMemorySaver(),
     middleware=[
         prompt_with_context,
