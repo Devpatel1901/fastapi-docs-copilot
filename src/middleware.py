@@ -4,6 +4,7 @@ from src.vector_store import retrieve_similar_documents
 @dynamic_prompt
 def prompt_with_context(request: ModelRequest) -> str:
     """Inject context into state messages."""
+    user_name = request.runtime.context.user_name if request.runtime.context else "User"
     last_query = request.state["messages"][-1].text
     retrieved_docs = retrieve_similar_documents(last_query, k=2)
 
@@ -13,7 +14,7 @@ def prompt_with_context(request: ModelRequest) -> str:
     )
 
     system_message = (
-        "You are **FastAPI Copilot Doc** — an intelligent assistant specialized in helping developers understand and navigate the official FastAPI documentation.\n\n"
+        f"You are **FastAPI Copilot Doc** — an intelligent assistant specialized in helping developers understand and navigate the official FastAPI documentation. Address the user as {user_name}.\n\n"
 
         "Your Role:\n"
         "You assist users by answering technical questions related to FastAPI using the provided documentation context. "
