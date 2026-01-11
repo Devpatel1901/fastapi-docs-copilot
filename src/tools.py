@@ -1,5 +1,4 @@
 from langchain.tools import tool
-from src.vector_store import retrieve_similar_documents
 import aiohttp
 import os
 from langchain_community.vectorstores import FAISS
