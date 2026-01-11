@@ -47,6 +47,11 @@ This runs [`src.indexing.initiate_indexing_process`](src/indexing.py) which load
 }
 ```
 
+4. Run agent in langsmith using below command:
+```sh
+langgraph dev --allow-blocking
+```
+
 Notes:
 - If you prefer not to use `uv`, you can use your system `python` (e.g., `python -m src.indexing`).
 - Ensure environment variables for your LLM provider are set in `.env` before running the agent.
